@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .img_style{
+            width:600px;
+            height:600px;
+            border:#000 solid 1px;
+            text-align:center;
+            background-color:#FC0
+        }
+    </style>
+</head>
+<body>
+<div class="img_style" id="img_divid">
+    <img src="img/worf.jpg" />
+</div>
+<script  type="text/javascript" language="javascript">
+    window.onload=function(){
+        changeImgSize();
+    }
+    function changeImgSize(){
+        var getdivid=document.getElementById('img_divid');
+        var getImg=getdivid.getElementsByTagName('img')[0];
+        var fw=getdivid.offsetWidth-(2*getdivid.clientLeft);
+        var fh=getdivid.offsetHeight-(2*getdivid.clientTop);
+        var iw=getImg.width;
+        var ih=getImg.height;
+        var m=iw/fw;
+        var n=ih/fh;
+//        三种情况
+        if(m>=1 && n<=1)
+        {
+            iw=Math.ceil(iw/m);
+            ih=Math.ceil(ih/m);
+            getImg.width=iw;
+            getImg.height=ih;
+        }
+        else if(m<=1&&n>=1)
+        {
+            iw=Math.ceil(iw/n);
+            ih=Math.ceil(ih/n);
+            getImg.width=iw;
+            getImg.height=ih;
+        }
+        else if(m>=1&&n>=1)
+        {
+            getMax=Math.max(m,n);
+            iw=Math.ceil(iw/getMax);
+            ih=Math.ceil(ih/getMax);
+            getImg.width=iw;
+            getImg.height=ih;
+        }
+        if(getImg.height<fh)
+        {
+            var getDistance=Math.floor((fh-getImg.height)/2);
+            getImg.style.marginTop=getDistance.toString()+"px";
+        }
+    }
+</script>
+</body>
+</html>
